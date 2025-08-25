@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Procura de entidade por Nome</h1>
+<p><b>Entidade:</b>"{{ search.expr }}"</p>
+<p>
+<ul>
+  {% for e in entidade %}
+  <li><a href="/entidade/{{ e.NIF }}">{{e.NOME }}</a></li>
+  {% endfor %}
+</ul>
+</p>
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Contratos públicos em Portugal (22/11/2023)</h1>
+
+<h2>Sobre o projeto</h2>
+<p>Com base nas informações da amostra de contratos públicos que retiramos do site <a href="https://www.base.gov.pt/Base4/pt/pesquisa/?type=contratos&texto=&tipo=0&tipocontrato=0&cpv=&aqinfo=&adjudicante=&adjudicataria=&sel_price=price_c1&desdeprecocontrato=&ateprecocontrato=&desdeprecoefectivo=&ateprecoefectivo=&desdeprazoexecucao=&ateprazoexecucao=&sel_date=date_c2&desdedatacontrato=2023-11-22&atedatacontrato=2023-11-22&desdedatapublicacao=2023-11-22&atedatapublicacao=2023-11-22&desdedatafecho=&atedatafecho=&pais=0&distrito=0&concelho=0">base.gov.pt</a>, criamos uma pequena base de dados para organizar esses dados referentes apenas aos contratos efetuados no dia 22/11/2023. Durante esse processo, utilizamos a tecnologia <a href = "https://docs.python.org/3/library/sqlite3.html">SQLite3</a> para desenvolver a base de dados e o <a href="https://flask.palletsprojects.com">Flask</a> para criar esta pequena e simples aplicação web, na qual apresentamos o nosso trabalho. Além disso, também incorporamos o <a href="https://jinja.palletsprojects.com/en/3.1.x/">Jinja</a> para aprimorar a apresentação dos dados.
+
+</p>
+
+
+<h2>Dados listados da nossa base de dados</h2>
+<table>
+<tr>
+  <th>Items</th>
+  <th>Nº de items</th>
+</tr>
+<tr>
+  <td>Entidades</td>
+  <td>{{ stats.n_entities }}</td>
+</tr>
+<tr>
+  <td>Contratos</td>
+  <td>{{ stats.n_contratos }}</td>
+</tr>
+<tr>
+  <td>Produtos</td>
+  <td>{{ stats.n_produtos }}</td>
+</tr>
+
+</table>
+
+
+<h2>Pesquisa</h2>
+
+<p><h3>Entidades</h3>
+  <form name="nif" action="javascript:window.open('/entidade/'+document.forms['nif'].elements['id'].value,'_self')">
+     NIF: <input value="" name="id" type="number" min="100000000"/>
+     <input type="submit" value="get"/>
+  </form>
+  <p>
+    <form name="esearch" action="javascript:window.open('/entidade/search/'+document.forms['esearch'].elements['expr'].value,'_self')">
+      Nome: <input name="expr" id="expr" value="" required/>
+      <input type="submit" value="search"/>
+    </form>
+</p>
+<p>
+  <a href="/entidade">Todas as entidades</a>
+</p>
+  </p>
+
+<h3>Contratos</h3>
+
+<p>
+<form name="cid" action="javascript:window.open('/contrato/'+document.forms['cid'].elements['id'].value,'_self')">
+  Por ID de Contrato: <input value="" name="id" type="number" min="1"/><input type="submit" value="get"/>
+</form>
+</p>
+
+<p>
+  <form name="cdes" action="javascript:window.open('/contrato/search/'+document.forms['cdes'].elements['expr'].value,'_self')">
+    Por Descrição: <input name="expr" id="expr" value="" required/>
+    <input type="submit" value="search"/>
+  </form>
+  </p>
+
+
+<p>
+  <a href="/contrato">Todos os contratos</a>
+</p> 
+
+
+<h3>Produtos</h3>
+<p>
+
+  <form name="cpv" action="javascript:window.open('/produto/' + document.forms['cpv'].elements['id'].value,'_self')">
+    Por CPV: <input value="" name="id" type="text" />
+    <input type="submit" value="get"/>
+  </form>
+
+  <p>
+    <form name="pname" action="javascript:window.open('/produto/search/'+document.forms['pname'].elements['expr'].value,'_self')">
+      Por Nome: <input name="expr" id="expr" value="" required/>
+      <input type="submit" value="search"/>
+    </form>
+    </p>
+
+  </p>
+<p>
+   <a href="/produto">Todos os produtos</a>
+</p>
+
+{% endblock %}

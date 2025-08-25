@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Pesquisa de produtos</h1>
+    <p><b>Search expression:</b> "{{ search.expr }}"</p>
+    <p>
+        <ul>
+            {% for p in produto %}
+                <li><a href="/produto/{{ p.CPV }}">{{ p.NOME }}</a></li>
+            {% endfor %}
+        </ul>
+    </p>
+{% endblock %}
+

@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Contratos</h1>
+<table>
+  <tr>
+    <th>
+      <b>ID</b>
+    </th>
+    <th>
+      <b>Descrição</b>
+    </th>
+  </tr>
+  {% for c in contrato %}
+  <tr>
+    <td>
+      <a href="/contrato/{{ c.ID_CONTRATO }}">{{c.ID_CONTRATO}}</a>
+    </td>
+    <td>
+      {{ c.DESCRICAO }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>ID de contrato {{ contrato.ID_CONTRATO }}</h1>
+
+<p>
+  <b>DATA: </b>{{ contrato.DATA }}
+</p>
+<p>
+  <b>VALOR: </b>{{ contrato.VALOR }} €
+</p>
+<p>
+  <b>TIPO: </b>{{ contrato.TIPO }}
+</p>
+<p>
+  <b>DESCRICAO: </b>{{ contrato.DESCRICAO }}
+</p>
+
+{% for entidade in contrato.ENTIDADES %}
+  {% if entidade.TIPO_ENTIDADE == 'ADJUDICANTE' %}
+    <h2>Adjudicante</h2>
+    <p>
+      <b>NIF: </b>{{ entidade.NIF_ENTIDADE }}
+    </p>
+    <p>
+      <b>NOME: </b>{{ entidade.NOME_ENTIDADE }}
+    </p>
+  {% endif %}
+{% endfor %}
+
+{% for entidade in contrato.ENTIDADES %}
+  {% if entidade.TIPO_ENTIDADE == 'ADJUDICATARIA' %}
+    <h2>Adjudicatário</h2>
+    <p>
+      <b>NIF: </b>{{ entidade.NIF_ENTIDADE }}
+    </p>
+    <p>
+      <b>NOME: </b>{{ entidade.NOME_ENTIDADE }}
+    </p>
+  {% endif %}
+{% endfor %}
+
+{% endblock %}

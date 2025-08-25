@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>Entidades</h1>
+<table>
+  <tr>
+    <th>
+      <b>NIF</b>
+    </th>
+    <th>
+      <b>NOME</b>
+    </th>
+  </tr>
+  {% for e in entidade %}
+  <tr>
+    <td>
+      <a href="/entidade/{{ e.NIF }}">{{e.NIF}}</a>
+    </td>
+    <td>
+      {{ e.NOME }}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
